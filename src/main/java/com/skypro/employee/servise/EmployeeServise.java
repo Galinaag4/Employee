@@ -2,6 +2,7 @@ package com.skypro.employee.servise;
 
 import com.skypro.employee.model.Employee;
 import com.skypro.employee.record.EmployeeRequest;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -23,7 +24,7 @@ public class EmployeeServise {
                 employeeRequest.getLastName(),
                 employeeRequest.getDepartment(),
                 employeeRequest.getSalary());
-               ;
+
         this.employees.put(employee.getId(), employee);
         return employee;
     }
@@ -48,3 +49,4 @@ public class EmployeeServise {
     }
 
 }
+
