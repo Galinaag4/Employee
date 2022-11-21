@@ -17,11 +17,11 @@ public class EmployeeServise {
         return this.employees.values();
     }
     public Employee addEmployee(EmployeeRequest employeeRequest){
-        if (employeeRequest.getFirstName() == null || employeeRequest.getLastName() == null){
-            throw  new IllegalArgumentException(" Имя работника должно быть заполнено ");
+        if (StringUtils.isBlank(employeeRequest.getFirstName())||StringUtils.isBlank(employeeRequest.getLastName())){
+            throw  new IllegalArgumentException(" Введите имя");
         }
-        Employee employee = new Employee(employeeRequest.getFirstName(),
-                employeeRequest.getLastName(),
+        Employee employee = new Employee(StringUtils.capitalize(employeeRequest.getFirstName()),
+               StringUtils.capitalize(employeeRequest.getLastName()),
                 employeeRequest.getDepartment(),
                 employeeRequest.getSalary());
 
