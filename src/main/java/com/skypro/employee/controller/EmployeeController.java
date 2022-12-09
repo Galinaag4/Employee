@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.OptionalInt;
 
 @RestController
@@ -38,8 +39,8 @@ public class EmployeeController {
         return  this.employeeServise.getMaxSalary();
     }
     @GetMapping("/employees/salary/highSalary")
-    public int highSalary(){
-        return  this.employeeServise.highSalary();
+    public List<Employee> highSalary(){
+        return  this.employeeServise.getEmployeesWithSalaryMoreThatAverage();
     }
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
