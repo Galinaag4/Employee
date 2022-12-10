@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.OptionalInt;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,7 +32,7 @@ private final List<Employee> employees = List.of(
     DepartmentServise departmentServise;
     @BeforeEach
     public void setup(){
-    when(employeeServise.getAllEmployees());
+    when(employeeServise.getAllEmployees())
     .thenReturn(employees);
     }
     @Test

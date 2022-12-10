@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Component
 public class EmployeesRepository {
     private static int lastId;
@@ -14,14 +15,15 @@ public class EmployeesRepository {
         this.employees = employees;
     }
 
-    public static List<Employee> getEmployees() {
+    public  List<Employee> getEmployees() {
         return employees;
     }
 
     public static int getLastId() {
         return lastId;
     }
-    public void addEmployee(Employee employee){
+
+    public void addEmployee(Employee employee) {
         employees.add(employee);
         ++lastId;
     }

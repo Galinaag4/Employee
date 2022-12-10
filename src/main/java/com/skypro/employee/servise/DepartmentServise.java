@@ -17,37 +17,43 @@ public class DepartmentServise {
     public DepartmentServise(EmployeeServise employeeServise) {
         this.employeeServise = employeeServise;
     }
-    public Collection<Employee>getDepartmentEmployees(int department){
+
+    public Collection<Employee> getDepartmentEmployees(int department) {
         return getEmployeesByDepartmentStream(department)
                 .collect(Collectors.toList());
     }
-    public int getSumOfSalariesByDepartment(int department){
+
+    public int getSumOfSalariesByDepartment(int department) {
         return getEmployeesByDepartmentStream(department)
                 .mapToInt(Employee::getSalary)
                 .sum();
     }
-    public OptionalInt getMaxSalaryByDepartment(int department){
+
+    public OptionalInt getMaxSalaryByDepartment(int department) {
         return getEmployeesByDepartmentStream(department)
                 .mapToInt(Employee::getSalary)
                 .max();
 
 
     }
-    public OptionalInt getMinSalaryByDepartment(int department){
+
+    public OptionalInt getMinSalaryByDepartment(int department) {
         return getEmployeesByDepartmentStream(department)
                 .mapToInt(Employee::getSalary)
                 .min();
 
 
     }
-    public Map<Integer, List<Employee>> getEmployeesGroupedByDepartments(){
+
+    public Map<Integer, List<Employee>> getEmployeesGroupedByDepartments() {
         return EmployeeServise.getAllEmployees().stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment));
     }
-    private Stream<Employee> getEmployeesByDepartmentStream(int department){
+
+    private Stream<Employee> getEmployeesByDepartmentStream(int department) {
         return EmployeeServise.getAllEmployees()
                 .stream()
-                .filter(e->e.getDepartment()==department);
+                .filter(e -> e.getDepartment() == department);
     }
 
 }

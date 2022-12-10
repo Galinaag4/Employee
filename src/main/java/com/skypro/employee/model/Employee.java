@@ -15,18 +15,23 @@ public class Employee {
         this.department = department;
         this.salary = salary;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public int getId() {
         return id;
     }
+
     public int getSalary() {
         return salary;
     }
+
     public int getDepartment() {
         return department;
     }
@@ -45,7 +50,6 @@ public class Employee {
                 ", department=" + department +
                 '}';
     }
-
 
 
 }

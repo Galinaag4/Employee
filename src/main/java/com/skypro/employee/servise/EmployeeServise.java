@@ -11,53 +11,62 @@ import java.util.stream.Collectors;
 @Service
 public class EmployeeServise {
     private final Map<Integer, Employee> employees = new HashMap<>();
-    public static Collection<Employee> getAllEmployees(){
+
+    public  Collection<Employee> getAllEmployees() {
         return this.employees.values();
     }
-    public Employee addEmployee(EmployeeRequest employeeRequest){
-        if (StringUtils.isBlank(employeeRequest.getFirstName())||StringUtils.isBlank(employeeRequest.getLastName())){
-            throw  new IllegalArgumentException(" Введите имя");
+
+    public Employee addEmployee(EmployeeRequest employeeRequest) {
+        if (StringUtils.isBlank(employeeRequest.getFirstName()) || StringUtils.isBlank(employeeRequest.getLastName())) {
+            throw new IllegalArgumentException(" Введите имя");
         }
         Employee employee = new Employee(StringUtils.capitalize(employeeRequest.getFirstName()),
-               StringUtils.capitalize(employeeRequest.getLastName()),
+                StringUtils.capitalize(employeeRequest.getLastName()),
                 employeeRequest.getDepartment(),
                 employeeRequest.getSalary());
 
         this.employees.put(employee.getId(), employee);
         return employee;
     }
-    public  int getSalarySum(){
+
+    public int getSalarySum() {
         return employees.values().stream()
                 .mapToInt(Employee::getSalary)
                 .sum();
     }
-    public Employee getMinSalary(){
+
+    public Employee getMinSalary() {
         return employees.values().stream()
-                .min((s1,s2)-> s1.getSalary()-s2.getSalary())
+                .min((s1, s2) -> s1.getSalary() - s2.getSalary())
                 .get();
     }
-    public OptionalInt getMaxSalary(){
+
+    public Employee getMaxSalary() {
         return employees.values().stream()
                 .mapToInt(Employee::getSalary)
                 .max();
     }
-    public List<Employee> getEmployeesWithSalaryMoreThatAverage(){
+
+    public List<Employee> getEmployeesWithSalaryMoreThatAverage() {
         Double averageSalary = getAvarageSalary();
-        if(averageSalary==null){
+        if (averageSalary == null) {
             return Collections.emptyList();
         }
         return employees.values()
                 .stream()
-                .filter(e->e.getSalary()>averageSalary)
+                .filter(e -> e.getSalary() > averageSalary)
                 .collect(Collectors.toList());
     }
-    private Double getAvarageSalary (){
+
+    private Double getAvarageSalary() {
         return employees.values()
                 .stream()
                 .collect(Collectors.averagingInt(Employee::getSalary));
     }
-    public Employee removeEmployee(int id){return employees.remove(id);}
 
+    public Employee removeEmployee(int id) {
+        return employees.remove(id);
+    }
 
 
 }

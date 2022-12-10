@@ -3,13 +3,15 @@ package com.skypro.employee;
 import com.skypro.employee.model.Employee;
 import com.skypro.employee.record.EmployeeRequest;
 import com.skypro.employee.servise.EmployeeServise;
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
 import java.util.OptionalInt;
 import java.util.stream.Stream;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class EmployeeServiseTest {
@@ -29,10 +31,10 @@ public class EmployeeServiseTest {
           "Valid", "Valid",3,5000
         );
         Employee result = employeeServise.addEmployee(request);
-        assrtEquals(request.getFirstName(),result.getFirstName());
-        assrtEquals(request.getLastName(),result.getLastName());
-        assrtEquals(request.getSalary(),result.getSalary());
-        assrtEquals(request.getDepartment(),result.getDepartment());
+        assertEquals(request.getFirstName(),result.getFirstName());
+        assertEquals(request.getLastName(),result.getLastName());
+        assertEquals(request.getSalary(),result.getSalary());
+        assertEquals(request.getDepartment(),result.getDepartment());
         Assertions
                 .assertThat(employeeServise.getAllEmployees())
                 .contains(result);
@@ -59,9 +61,9 @@ public class EmployeeServiseTest {
     }
     @Test
     public void employeeWithMaxSalary(){
-      OptionalInt employee = employeeServise.getMaxSalary();
+      Employee employee = employeeServise.getMaxSalary();
         Assertions.assertThat(employee)
-                .inNotNull()
+                .isNotNull()
                 .extracting(Employee::getFirstName)
                 .isEqualTo("Test Three");
 
